@@ -26,3 +26,5 @@ end
 
 
 
+
+gem "jbuilder", "~> 2.11"

@@ -5,4 +5,10 @@ class User < ApplicationRecord
         :recoverable, :rememberable, :validatable,
         :jwt_authenticatable, jwt_revocation_strategy: self
 
+  def generate_jwt
+    Warden::JWTAuth::UserEncoder
+      .new
+      .call(self, :user, nil)
+      .first
+  end 
 end
