@@ -1,3 +1,13 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: 'users/sessions' }, defaults: { format: :json }
+  scope :api, defaults: { format: :json } do
+
+    devise_for :users,
+              defaults: { format: :json },
+              path_names: { sign_in: :login },
+              controllers: { sessions: 'users/sessions' }
+
+    resource :user, only: %i[show]
+  end
 end
