@@ -1,0 +1,63 @@
+
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+
+AllCops:
+  NewCops: enable
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+    - 'db/seeds.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/*.rb'
+
+Metrics/AbcSize:
+  Max: 35
+
+Rails/FilePath:
+  Exclude:
+    - 'spec/rails_helper.rb'
+RSpec/NestedGroups:
+  Max: 4
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 8
+
+Style/Documentation:
+  Enabled: false
+
+
+Metrics/CyclomaticComplexity:
+  Max: 8
+
+Naming/FileName:
+  Exclude:
+    - 'config/initializers/rswag-ui.rb'
+
+RSpec/LetSetup:
+  Exclude:
+    - 'spec/requests/tags_spec.rb'
+
+Rails/BulkChangeTable:
+  Exclude:
+    - 'db/migrate/20220909204735_add_profile_fields_to_users.rb'
+
+Style/GuardClause:
+  Exclude:
+    - 'db/migrate/20220929000432_change_collation_for_tag_names.acts_as_taggable_on_engine.rb'
+
+Style/IfUnlessModifier:
+  Exclude:
+    - 'db/migrate/20220929000433_add_missing_indexes_on_taggings.acts_as_taggable_on_engine.rb'
+
+Layout/LineLength:
+  Max: 154
+
+Rails/ApplicationRecord:
+  Exclude:
+    - 'app/models/user.rb'
