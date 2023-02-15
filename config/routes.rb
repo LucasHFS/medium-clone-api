@@ -1,6 +1,13 @@
-Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+# frozen_string_literal: true
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+Rails.application.routes.draw do
+  scope :api, defaults: { format: :json } do
+
+    devise_for :users,
+              defaults: { format: :json },
+              path_names: { sign_in: :login },
+              controllers: { sessions: 'users/sessions' }
+
+    resource :user, only: %i[show]
+  end
 end
