@@ -2,6 +2,7 @@
 
 class ArticlesController < ApplicationController
   before_action :authenticate_user!
+
   def create
     @article = Article.new(article_params)
     @article.user = current_user
@@ -15,8 +16,10 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :description, :body, tagList: [])
-    # tag_list = parameters.extract!(:tagList)
-    # parameters[:tag_list] = tag_list[:tagList]
+    parameters = params.require(:article).permit(:title, :description, :body, tagList: [])
+    tag_list = parameters.extract!(:tagList)
+    parameters[:tag_list] = tag_list[:tagList]
+
+    parameters
   end
 end
