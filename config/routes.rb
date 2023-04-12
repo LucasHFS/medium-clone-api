@@ -7,7 +7,7 @@ Rails.application.routes.draw do
                path_names: { sign_in: :login },
                controllers: { sessions: 'users/sessions' }
 
-    resource :user, only: %i[show]
+    resource :user, only: %i[show update]
     resource :articles, param: :slug
   end
 end

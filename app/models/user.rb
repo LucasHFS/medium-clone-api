@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  DEFAULT_PROFILE_URL = 'https://i.stack.imgur.com/xHWG8.jpg'
+
   include Devise::JWT::RevocationStrategies::JTIMatcher
   has_many :articles, dependent: :destroy
   devise :database_authenticatable, :registerable,
@@ -12,5 +14,9 @@ class User < ApplicationRecord
       .new
       .call(self, :user, nil)
       .first
+  end
+
+  def picture_url
+    image_url || DEFAULT_PROFILE_URL
   end
 end
