@@ -3,6 +3,13 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    limit = params.fetch(:limit, 20)
+    offset = params.fetch(:offset, 0)
+
+    @articles = Article.limit(limit).order(created_at: :desc).offset(offset) 
+  end
+
   def create
     @article = Article.new(article_params)
     @article.user = current_user

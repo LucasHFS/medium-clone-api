@@ -8,6 +8,6 @@ Rails.application.routes.draw do
                controllers: { sessions: 'users/sessions' }
 
     resource :user, only: %i[show update]
-    resource :articles, param: :slug
+    resources :articles, param: :slug
   end
 end
