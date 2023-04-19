@@ -6,6 +6,7 @@ class Article < ApplicationRecord
 
   validates :title, :slug, presence: true
   before_validation :set_slug
+  scope :authored_by, ->(username) { where(user: User.where(username:)) }
 
   def sorted_tag_list
     tag_list.sort
